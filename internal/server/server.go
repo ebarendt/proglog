@@ -67,6 +67,7 @@ func NewGRPCServer(config *Config, opts ...grpc.ServerOption) (*grpc.Server, err
 				grpc_auth.UnaryServerInterceptor(authenticate),
 			),
 		),
+		grpc.StatsHandler(&ocgrpc.ServerHandler{}),
 	)
 	gsrv := grpc.NewServer(opts...)
 	srv, err := newgrpcServer(config)
